@@ -1,14 +1,18 @@
 import {FlatList} from 'react-native';
 import {CATEGORIES} from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
-import { navigate } from '../node_modules/@react-navigation/routers/src/CommonActions';
+// import { navigate } from '../node_modules/@react-navigation/routers/src/CommonActions';
 
 
 
 function CategoriesScreen({navigation}) {
+  
   function renderCategoryItem(itemData) {
+
     function pressHandler(){
-    navigation.navigate('MealsOcerView')
+    navigation.navigate('MealsOverView',{
+      categoryId:itemData.item.id
+    })
     }
       return (
         <CategoryGridTile title={itemData.item.title} color={itemData.item.color} onPress={pressHandler} />

@@ -62,6 +62,7 @@ const Stack = createNativeStackNavigator();
 
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import MealsOverViewScreen from './screens/MealsOverView';
+import Category from './models/category';
 
 function App(): React.JSX.Element {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -108,17 +109,34 @@ function App(): React.JSX.Element {
     // </View>
     // <SafeAreaProvider>
 
-
-      <NavigationContainer>
-        <Stack.Navigator 
-        // initialRouteName='MealsOcerView'
-        >
-          <Stack.Screen name="MealsGategorys" component={CategoriesScreen} />
-          <Stack.Screen name="MealsOcerView" component={MealsOverViewScreen}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-
-
+    <NavigationContainer>
+      <Stack.Navigator
+        // initialRouteName='MealsOverView'
+        screenOptions={{
+          headerStyle: {backgroundColor: ''},
+          headerTintColor: '',
+          contentStyle: {backgroundColor: ''},
+          // headerShown: false
+        }}>
+        <Stack.Screen
+          name="MealsGategorys"
+          component={CategoriesScreen}
+          options={{
+            title: 'All Categories',
+          }}
+        />
+        <Stack.Screen
+          name="MealsOverView"
+          component={MealsOverViewScreen}
+          // options={({route, navigation}) => {
+          //   const categId = route?.params?.categoryId;
+          //   return {
+          //     title: categId,
+          //   };
+          // }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
 
     // </SafeAreaProvider>
   );
