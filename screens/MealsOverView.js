@@ -12,7 +12,8 @@ function MealsOverViewScreen({route, navigation}) {
   const meals = MEALS.filter(mealItem => {
     return mealItem.categoryIds.indexOf(categId) >= 0;
   });
-useLayoutEffect(() => {
+
+  useLayoutEffect(() => {
     const categTitle = CATEGORIES.find(
       category => category.id === categId,
     ).title;
@@ -23,7 +24,13 @@ useLayoutEffect(() => {
   });
 
   function renderMealItem(itemData) {
-    return <MealItem title={itemData.item.title} />;
+    function pressHandler() {
+      navigation.navigate('MealsGategorys',{
+        // categoryId:itemData.item.id
+      })
+    }
+
+    return <MealItem title={itemData.item.title} onPress={pressHandler} />;
   }
 
   return (
@@ -35,5 +42,3 @@ useLayoutEffect(() => {
   );
 }
 export default MealsOverViewScreen;
-
-
